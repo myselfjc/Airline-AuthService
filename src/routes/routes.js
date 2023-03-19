@@ -12,6 +12,4 @@ router.
     .delete(userController.deleteUser)
     .get(userController.getUser);
 
-
-
 module.exports = router;
