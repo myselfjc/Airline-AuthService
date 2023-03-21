@@ -47,7 +47,7 @@ class UserService {
         
         if(!passwordMatch){
             throw {error:'Incorrect Password!'}
-        }
+        };
 
         const jwtToken = this.createToken({email:user.email,id:user.id});
 
@@ -98,6 +98,15 @@ class UserService {
     try {
       const check = bcrypt.compareSync(userPassword, candidatePassword);
       return check;
+    } catch (error) {
+      console.log(error);
+      throw { error };
+    }
+  }
+
+  async isAdmin(userId){
+    try {
+      return this.userRepository.isAdmin(userId);
     } catch (error) {
       console.log(error);
       throw { error };

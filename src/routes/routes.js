@@ -6,6 +6,7 @@ const userMiddleware = require('../middlewares/userMiddleware');
 router.route('/signup').post(userMiddleware.validateUser,userController.signup);
 router.route('/login').post(userController.login);
 router.route('/authenticate').get(userController.isAuthenticated);
+router.route('/isAdmin').get(userController.isAdmin);
 
 router.
     route('/:id')

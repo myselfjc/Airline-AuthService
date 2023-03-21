@@ -91,3 +91,27 @@ exports.getUser = async (req,res,next) =>{
         })  
     }
 }
+
+exports.isAdmin = async (req,res,next) =>{
+    try {
+        const user = await this.userService.isAdmin(req.body.id);
+        if(user === true){
+            return res.status(200).json({
+                status:"Success",
+                message:"User is an Amin!",
+                user
+            })
+        }
+        res.status(200).json({
+            status:"Success",
+            message:"User is not an Admin!",
+            user
+        });
+    } catch (error) {
+        res.status(400).json({
+            status:"Failed",
+            message:"Failed in Controller layer!",
+            error
+        }) 
+    }
+}

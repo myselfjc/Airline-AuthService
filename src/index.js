@@ -3,13 +3,14 @@ const { PORT } = require('./config/serverConfig');
 const router = require('./routes/routes');
 
 const db = require('./models/index');
+const {User,Role} = require('./models/index');
 
 const serverSetupAndStart = async () => {
     const app = express();
     app.use(express.json());
     app.use('/api/v1/user',router);
 
-    app.listen(PORT,()=>{
+    app.listen(PORT, async ()=>{
         if(process.env.DB_SYNC){
             db.sequelize.sync({alter:true});
         } 
